@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SiLab - Form Pemeriksaan Pasien</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <i class="fas fa-microscope logo-icon"></i>
+                <div class="header-text">
+                    <h1>SisterLab</h1>
+                    <p>Sistem Informasi Terpadu Laboratorium</p>
+                </div>
+            </div>
+            <div class="header-subtitle">
+                <h2>FORM PEMERIKSAAN PASIEN</h2>
+                <p>UPTD PUSKESMAS MEUREUBO</p>
+            </div>
+        </header>
+
+        <!-- Form Section -->
+        <div class="form-container">
+            <form id="pemeriksaanForm">
+                <!-- Data Pasien -->
+                <div class="section">
+                    <h3><i class="fas fa-user-injured"></i> Data Pasien</h3>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="namaPasien">Nama Pasien <span class="required">*</span></label>
+                            <input type="text" id="namaPasien" name="namaPasien" required placeholder="Masukkan nama lengkap">
+                        </div>
+                        <div class="form-group">
+                            <label for="umur">Umur <span class="required">*</span></label>
+                            <input type="number" id="umur" name="umur" required placeholder="Tahun" min="0" max="150">
+                        </div>
+                        <div class="form-group">
+                            <label for="jenisKelamin">Jenis Kelamin <span class="required">*</span></label>
+                            <select id="jenisKelamin" name="jenisKelamin" required>
+                                <option value="">Pilih Jenis Kelamin</option>
+                                <option value="Laki-laki">Laki-laki</option>
+                                <option value="Perempuan">Perempuan</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="tanggalPemeriksaan">Tanggal Pemeriksaan <span class="required">*</span></label>
+                            <input type="date" id="tanggalPemeriksaan" name="tanggalPemeriksaan" required>
+                        </div>
+                        <div class="form-group full-width">
+                            <label for="Alamat">Alamat <span class="required">*</span></label>
+                            <textarea id="Alamat" name="Alamat" required placeholder="Masukan alamat pasien..." rows="3"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="klaster">Klaster <span class="required">*</span></label>
+                            <select id="klaster" name="klaster" required>
+                                <option value="">Pilih Klaster</option>
+                                <option value="Klaster II">Klaster II</option>
+                                <option value="Klaster III">Klaster III</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Kategori Pemeriksaan -->
+                <div class="section">
+                    <h3><i class="fas fa-flask"></i> Kategori Pemeriksaan</h3>
+                    <p class="info-text"><i class="fas fa-info-circle"></i> Pilih minimal 1 kategori pemeriksaan</p>
+                    
+                    <div class="kategori-container">
+                        <!-- Hematologi -->
+<div class="kategori-card">
+    <div class="kategori-header">
+        <input type="checkbox" id="kat-hematologi" class="kategori-checkbox" data-kategori="hematologi">
+        <label for="kat-hematologi">
+            <i class="fas fa-droplet"></i> Hematologi
+        </label>
+    </div>
+    <div class="pemeriksaan-list" id="list-hematologi" style="display: none;">
+        <p class="sub-info">Pilih pemeriksaan dan masukkan hasil:</p>
+        
+        <div class="pemeriksaan-item">
+            <label class="checkbox-label">
+                <input type="checkbox" name="pemeriksaan-hematologi" value="Haemoglobin" data-id="hb">
+                <span>Haemoglobin</span>
+            </label>
+            <div class="input-hasil" id="input-hb" style="display: none;">
+                <input type="text" name="hasil-hb" placeholder="Masukkan hasil (g/dL)" class="hasil-input">
+            </div>
+        </div>
+
+        <div class="pemeriksaan-item">
+            <label class="checkbox-label">
+                <input type="checkbox" name="pemeriksaan-hematologi" value="Leukosit" data-id="leukosit">
+                <span>Leukosit</span>
+            </label>
+            <div class="input-hasil" id="input-leukosit" style="display: none;">
+                <input type="text" name="hasil-leukosit" placeholder="Masukkan hasil (/mm³)" class="hasil-input">
+            </div>
+        </div>
+
+        <div class="pemeriksaan-item">
+            <label class="checkbox-label">
+                <input type="checkbox" name="pemeriksaan-hematologi" value="Eritrosit" data-id="eritrosit">
+                <span>Eritrosit</span>
+            </label>
+            <div class="input-hasil" id="input-eritrosit" style="display: none;">
+                <input type="text" name="hasil-eritrosit" placeholder="Masukkan hasil (juta/mm³)" class="hasil-input">
+            </div>
+        </div>
+
+        <div class="pemeriksaan-item">
+            <label class="checkbox-label">
+                <input type="checkbox" name="pemeriksaan-hematologi" value="LED" data-id="led">
+                <span>LED</span>
+            </label>
+            <div class="input-hasil" id="input-led" style="display: none;">
+                <input type="text" name="hasil-led" placeholder="Masukkan hasil (mm/jam)" class="hasil-input">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Urine -->
+<div class="kategori-card">
+    <div class="kategori-header">
+        <input type="checkbox" id="kat-urine" class="kategori-checkbox" data-kategori="urine">
+        <label for="kat-urine">
+            <i class="fas fa-vial"></i> Urine
+        </label>
+    </div>
+    <div class="pemeriksaan-list" id="list-urine" style="display: none;">
+        <p class="sub-info">Pilih pemeriksaan dan masukkan hasil:</p>
+        
+        <div class="pemeriksaan-item">
+            <label class="checkbox-label">
+                <input type="checkbox" name="pemeriksaan-urine" value="Leukosit urine" data-id="leukosit-urine">
+                <span>Leukosit urine</span>
+            </label>
+            <div class="input-hasil" id="input-leukosit-urine" style="display: none;">
+                <input type="text" name="hasil-leukosit-urine" placeholder="Masukkan hasil" class="hasil-input">
+            </div>
+        </div>
+
+        <div class="pemeriksaan-item">
+            <label class="checkbox-label">
+                <input type="checkbox" name="pemeriksaan-urine" value="Glukosa urine" data-id="glukosa-urine">
+                <span>Glukosa urine</span>
+            </label>
+            <div class="input-hasil" id="input-glukosa-urine" style="display: none;">
+                <input type="text" name="hasil-glukosa-urine" placeholder="Masukkan hasil" class="hasil-input">
+            </div>
+        </div>
+
+        <div class="pemeriksaan-item">
+            <label class="checkbox-label">
+                <input type="checkbox" name="pemeriksaan-urine" value="Blood urine" data-id="blood-urine">
+                <span>Blood urine</span>
+            </label>
+            <div class="input-hasil" id="input-blood-urine" style="display: none;">
+                <input type="text" name="hasil-blood-urine" placeholder="Masukkan hasil" class="hasil-input">
+            </div>
+        </div>
+
+        <div class="pemeriksaan-item">
+            <label class="checkbox-label">
+                <input type="checkbox" name="pemeriksaan-urine" value="Nitrit urine" data-id="nitrit-urine">
+                <span>Nitrit urine</span>
+            </label>
+            <div class="input-hasil" id="input-nitrit-urine" style="display: none;">
+                <input type="text" name="hasil-nitrit-urine" placeholder="Masukkan hasil" class="hasil-input">
+            </div>
+        </div>
+
+        <div class="pemeriksaan-item">
+            <label class="checkbox-label">
+                <input type="checkbox" name="pemeriksaan-urine" value="PH urine" data-id="ph-urine">
+                <span>PH urine</span>
+            </label>
+            <div class="input-hasil" id="input-ph-urine" style="display: none;">
+                <input type="text" name="hasil-ph-urine" placeholder="Masukkan hasil" class="hasil-input">
+            </div>
+        </div>
+
+        <div class="pemeriksaan-item">
+            <label class="checkbox-label">
+                <input type="checkbox" name="pemeriksaan-urine" value="Keton urine" data-id="keton-urine">
+                <span>Keton urine</span>
+            </label>
+            <div class="input-hasil" id="input-keton-urine" style="display: none;">
+                <input type="text" name="hasil-keton-urine" placeholder="Masukkan hasil" class="hasil-input">
+            </div>
+        </div>
+
+        <div class="pemeriksaan-item">
+            <label class="checkbox-label">
+                <input type="checkbox" name="pemeriksaan-urine" value="Bilirubin urine" data-id="bilirubin-urine">
+                <span>Bilirubin urine</span>
+            </label>
+            <div class="input-hasil" id="input-bilirubin-urine" style="display: none;">
+                <input type="text" name="hasil-bilirubin-urine" placeholder="Masukkan hasil" class="hasil-input">
+            </div>
+        </div>
+
+        <div class="pemeriksaan-item">
+            <label class="checkbox-label">
+                <input type="checkbox" name="pemeriksaan-urine" value="Warna urine" data-id="warna-urine">
+                <span>Warna urine</span>
+            </label>
+            <div class="input-hasil" id="input-warna-urine" style="display: none;">
+                <input type="text" name="hasil-warna-urine" placeholder="Masukkan warna" class="hasil-input">
+            </div>
+        </div>
+
+        <div class="pemeriksaan-item">
+            <label class="checkbox-label">
+                <input type="checkbox" name="pemeriksaan-urine" value="Kejernihan" data-id="kejernihan">
+                <span>Kejernihan</span>
+            </label>
+            <div class="input-hasil" id="input-kejernihan" style="display: none;">
+                <input type="text" name="hasil-kejernihan" placeholder="Masukkan hasil" class="hasil-input">
+            </div>
+        </div>
+
+        <div class="pemeriksaan-item">
+            <label class="checkbox-label">
+                <input type="checkbox" name="pemeriksaan-urine" value="Tes kehamilan" data-id="tes-kehamilan">
+                <span>Tes kehamilan</span>
+            </label>
+            <div class="input-hasil" id="input-tes-kehamilan" style="display: none;">
+                <select name="hasil-tes-kehamilan" class="hasil-input">
+                    <option value="">Pilih hasil</option>
+                    <option value="Positif">Positif</option>
+                    <option value="Negatif">Negatif</option>
+                </select>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Parasitologi -->
+<div class="kategori-card">
+    <div class="kategori-header">
+        <input type="checkbox" id="kat-parasitologi" class="kategori-checkbox" data-kategori="parasitologi">
+        <label for="kat-parasitologi">
+            <i class="fas fa-bacterium"></i> Parasitologi
+        </label>
+    </div>
+    <div class="pemeriksaan-list" id="list-parasitologi" style="display: none;">
+        <p class="sub-info">Pilih pemeriksaan dan masukkan hasil:</p>
+        
+        <div class="pemeriksaan-item">
+            <label class="checkbox-label">
+                <input type="checkbox" name="pemeriksaan-parasitologi" value="Malaria" data-id="malaria">
+                <span>Malaria</span>
+            </label>
+            <div class="input-hasil" id="input-malaria" style="display: none;">
+                <input type="text" name="hasil-malaria" placeholder="Masukkan hasil" class="hasil-input">
+            </div>
+        </div>
+
+        <div class="pemeriksaan-item">
+            <label class="checkbox-label">
+                <input type="checkbox" name="pemeriksaan-parasitologi" value="Filaria" data-id="filaria">
+                <span>Filaria</span>
+            </label>
+            <div class="input-hasil" id="input-filaria" style="display: none;">
+                <input type="text" name="hasil-filaria" placeholder="Masukkan hasil" class="hasil-input">
+            </div>
+        </div>
+
+        <div class="pemeriksaan-item">
+            <label class="checkbox-label">
+                <input type="checkbox" name="pemeriksaan-parasitologi" value="Faeces" data-id="faeces">
+                <span>Faeces</span>
+            </label>
+            <div class="input-hasil" id="input-faeces" style="display: none;">
+                <input type="text" name="hasil-faeces" placeholder="Masukkan hasil" class="hasil-input">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Serologi -->
+<div class="kategori-card">
+    <div class="kategori-header">
+        <input type="checkbox" id="kat-serologi" class="kategori-checkbox" data-kategori="serologi">
+        <label for="kat-serologi">
+            <i class="fas fa-syringe"></i> Serologi
+        </label>
+    </div>
+    <div class="pemeriksaan-list" id="list-serologi" style="display: none;">
+        <p class="sub-info">Pilih pemeriksaan dan masukkan hasil:</p>
+        
+        <div class="pemeriksaan-item">
+            <label class="checkbox-label">
+                <input type="checkbox" name="pemeriksaan-serologi" value="Golongan darah" data-id="golongan-darah">
+                <span>Golongan darah</span>
+            </label>
+            <div class="input-hasil" id="input-golongan-darah" style="display: none;">
+                <select name="hasil-golongan-darah" class="hasil-input">
+                    <option value="">Pilih golongan darah</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="AB">AB</option>
+                    <option value="O">O</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="pemeriksaan-item">
+            <label class="checkbox-label">
+                <input type="checkbox" name="pemeriksaan-serologi" value="Widal test" data-id="widal-test">
+                <span>Widal test</span>
+            </label>
+            <div class="input-hasil" id="input-widal-test" style="display: none;">
+                <input type="text" name="hasil-widal-test" placeholder="Masukkan hasil" class="hasil-input">
+            </div>
+        </div>
+
+        <div class="pemeriksaan-item">
+            <label class="checkbox-label">
+                <input type="checkbox" name="pemeriksaan-serologi" value="HIV" data-id="hiv">
+                <span>HIV</span>
+            </label>
+            <div class="input-hasil" id="input-hiv" style="display: none;">
+                <select name="hasil-hiv" class="hasil-input">
+                    <option value="">Pilih hasil</option>
+                    <option value="Reaktif">Reaktif</option>
+                    <option value="Non-Reaktif">Non-Reaktif</option>
+                </select>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Kimia Darah -->
+<div class="kategori-card">
+    <div class="kategori-header">
+        <input type="checkbox" id="kat-kimiaDarah" class="kategori-checkbox" data-kategori="kimiaDarah">
+        <label for="kat-kimiaDarah">
+            <i class="fas fa-heartbeat"></i> Kimia Darah
+        </label>
+    </div>
+    <div class="pemeriksaan-list" id="list-kimiaDarah" style="display: none;">
+        <p class="sub-info">Pilih pemeriksaan dan masukkan hasil:</p>
+        
+        <div class="pemeriksaan-item">
+            <label class="checkbox-label">
+                <input type="checkbox" name="pemeriksaan-kimiaDarah" value="Glukosa darah (Kadar sewaktu)" data-id="gds">
+                <span>Glukosa darah (Kadar sewaktu)</span>
+            </label>
+            <div class="input-hasil" id="input-gds" style="display: none;">
+                <input type="text" name="hasil-gds" placeholder="Masukkan hasil (mg/dL)" class="hasil-input">
+            </div>
+        </div>
+
+        <div class="pemeriksaan-item">
+            <label class="checkbox-label">
+                <input type="checkbox" name="pemeriksaan-kimiaDarah" value="Glukosa darah (Kadar gula puasa)" data-id="gdp">
+                <span>Glukosa darah (Kadar gula puasa)</span>
+            </label>
+            <div class="input-hasil" id="input-gdp" style="display: none;">
+                <input type="text" name="hasil-gdp" placeholder="Masukkan hasil (mg/dL)" class="hasil-input">
+            </div>
+        </div>
+
+        <div class="pemeriksaan-item">
+            <label class="checkbox-label">
+                <input type="checkbox" name="pemeriksaan-kimiaDarah" value="Glukosa darah (Kadar gula Post prandial)" data-id="gd2pp">
+                <span>Glukosa darah (Kadar gula Post prandial)</span>
+            </label>
+            <div class="input-hasil" id="input-gd2pp" style="display: none;">
+                <input type="text" name="hasil-gd2pp" placeholder="Masukkan hasil (mg/dL)" class="hasil-input">
+            </div>
+        </div>
+
+        <div class="pemeriksaan-item">
+            <label class="checkbox-label">
+                <input type="checkbox" name="pemeriksaan-kimiaDarah" value="Asam urat darah" data-id="asam-urat">
+                <span>Asam urat darah</span>
+            </label>
+            <div class="input-hasil" id="input-asam-urat" style="display: none;">
+                <input type="text" name="hasil-asam-urat" placeholder="Masukkan hasil (mg/dL)" class="hasil-input">
+            </div>
+        </div>
+
+        <div class="pemeriksaan-item">
+            <label class="checkbox-label">
+                <input type="checkbox" name="pemeriksaan-kimiaDarah" value="Cholestrol darah" data-id="cholesterol">
+                <span>Cholestrol darah</span>
+            </label>
+            <div class="input-hasil" id="input-cholesterol" style="display: none;">
+                <input type="text" name="hasil-cholesterol" placeholder="Masukkan hasil (mg/dL)" class="hasil-input">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Mikrobiologi -->
+<div class="kategori-card">
+    <div class="kategori-header">
+        <input type="checkbox" id="kat-mikrobiologi" class="kategori-checkbox" data-kategori="mikrobiologi">
+        <label for="kat-mikrobiologi">
+            <i class="fas fa-virus"></i> Mikrobiologi
+        </label>
+    </div>
+    <div class="pemeriksaan-list" id="list-mikrobiologi" style="display: none;">
+        <p class="sub-info">Pilih pemeriksaan dan masukkan hasil:</p>
+        
+        <div class="pemeriksaan-item">
+            <label class="checkbox-label">
+                <input type="checkbox" name="pemeriksaan-mikrobiologi" value="BTA / Bakteri tahan asam" data-id="bta">
+                <span>BTA / Bakteri tahan asam</span>
+            </label>
+            <div class="input-hasil" id="input-bta" style="display: none;">
+                <input type="text" name="hasil-bta" placeholder="Masukkan hasil" class="hasil-input">
+            </div>
+        </div>
+    </div>
+</div>
+
+                <!-- Buttons -->
+                <div class="button-group">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save"></i> Simpan Data
+                    </button>
+                    <button type="button" class="btn btn-secondary" onclick="resetForm()">
+                        <i class="fas fa-redo"></i> Reset Form
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Export Section -->
+<div class="export-section">
+    <h3><i class="fas fa-file-excel"></i> Ekspor Data ke Excel</h3>
+    <div class="export-info">
+        <p><i class="fas fa-database"></i> Total Data Tersimpan: <strong id="totalData">0</strong></p>
+        <p><i class="fas fa-calendar-alt"></i> Data bulan ini: <strong id="dataBulanIni">0</strong></p>
+    </div>
+    <div class="button-group">
+        <button type="button" class="btn btn-success" onclick="exportToExcel()">
+            <i class="fas fa-download"></i> Download Laporan Excel
+        </button>
+        <button type="button" class="btn btn-info" onclick="showData()">
+            <i class="fas fa-eye"></i> Lihat Data Tersimpan
+        </button>
+        <button type="button" class="btn btn-danger" onclick="confirmDeleteAll()">
+            <i class="fas fa-trash"></i> Hapus Semua Data
+        </button>
+    </div>
+</div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>&copy; 2025 SisterLab - UPTD Puskesmas Meureubo. Created By Gibran.</p>
+        </footer>
+    </div>
+
+    <!-- Modal Data -->
+    <div id="dataModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2><i class="fas fa-table"></i> Data Pemeriksaan Tersimpan</h2>
+            <div id="dataTableContainer"></div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <!-- Tambahkan tombol logout di header, setelah <div class="header-content"> -->
+<div class="header">
+    <div class="header-content">
+        <i class="fas fa-microscope logo-icon"></i>
+        <div class="header-text">
+            <h1>SisterLab</h1>
+            <p>Sistem Informasi Terpadu Laboratorium</p>
+        </div>
+        <!-- TAMBAHKAN INI -->
+        <button onclick="logout()" class="btn-logout" title="Keluar Sistem">
+            <i class="fas fa-sign-out-alt"></i> Logout
+        </button>
+    </div>
+    <div class="header-subtitle">
+        <h2>FORM PEMERIKSAAN PASIEN</h2>
+        <p>UPTD PUSKESMAS MEUREUBO</p>
+        <p class="user-info"><i class="fas fa-user-circle"></i> User: <strong id="currentUser"></strong></p>
+    </div>
+</header>
+
+<!-- DAN TAMBAHKAN SCRIPT INI SEBELUM </body> tapi SEBELUM script.js -->
+<script>
+// Proteksi halaman - Cek login
+if (sessionStorage.getItem('isLoggedIn') !== 'true') {
+    window.location.href = 'login.html';
+}
+
+// Tampilkan username yang login
+document.getElementById('currentUser').textContent = sessionStorage.getItem('username') || 'Unknown';
+
+// Fungsi logout
+function logout() {
+    if (confirm('Yakin ingin keluar dari sistem?')) {
+        sessionStorage.clear();
+        window.location.href = 'login.html';
+    }
+}
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script src="script.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

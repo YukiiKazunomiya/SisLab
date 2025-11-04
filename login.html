@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login - Puskesmas Meureubo</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  body::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: 
+      radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 1px, transparent 1px),
+      radial-gradient(circle at 80% 80%, rgba(255,255,255,0.1) 1px, transparent 1px);
+    background-size: 50px 50px;
+    animation: float 20s linear infinite;
+  }
+  
+  @keyframes float {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-50px); }
+  }
+  
+  .login-container {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    padding: 40px;
+    max-width: 420px;
+    width: 100%;
+    position: relative;
+    z-index: 1;
+    animation: slideIn 0.5s ease;
+  }
+  
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateY(-30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .logo-container {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  .logo-icon {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 15px;
+    box-shadow: 0 10px 25px rgba(102,126,234,0.3);
+  }
+  
+  .logo-icon i {
+    font-size: 40px;
+    color: white;
+  }
+  
+  h2 {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 5px;
+  }
+  
+  .subtitle {
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 20px;
+  }
+  
+  .input-group {
+    position: relative;
+    margin-bottom: 25px;
+  }
+  
+  .input-group i {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #667eea;
+    font-size: 18px;
+  }
+  
+  input {
+    width: 100%;
+    padding: 15px 15px 15px 50px;
+    border: 2px solid #e0e0e0;
+    border-radius: 12px;
+    font-size: 16px;
+    transition: all 0.3s;
+    background: #f8f9fa;
+  }
+  
+  input:focus {
+    outline: none;
+    border-color: #667eea;
+    background: white;
+    box-shadow: 0 0 0 4px rgba(102,126,234,0.1);
+  }
+  
+  button {
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    margin-top: 10px;
+  }
+  
+  button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(102,126,234,0.4);
+  }
+  
+  button:active {
+    transform: translateY(0);
+  }
+  
+  .alert {
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    display: none;
+    animation: shake 0.5s;
+  }
+  
+  .alert.error {
+    background: #fee;
+    color: #c33;
+    border: 1px solid #fcc;
+  }
+  
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-10px); }
+    75% { transform: translateX(10px); }
+  }
+  
+  .info-box {
+    background: #e7f3ff;
+    border-left: 4px solid #2196F3;
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 20px;
+    font-size: 13px;
+    color: #1976D2;
+  }
+  
+  .info-box i {
+    margin-right: 8px;
+  }
+</style>
+</head>
+<body>
+  <div class="login-container">
+    <div class="logo-container">
+      <div class="logo-icon">
+        <i class="fas fa-microscope"></i>
+      </div>
+      <h2>Sistem Informasi Terpadu Laboratorium</h2>
+      <div class="subtitle">UPTD Puskesmas Meureubo</div>
+    </div>
+    
+    <div id="alert" class="alert error"></div>
+    
+    <form id="loginForm">
+      <div class="input-group">
+        <i class="fas fa-user"></i>
+        <input type="text" id="username" placeholder="Username" required autocomplete="off">
+      </div>
+      
+      <div class="input-group">
+        <i class="fas fa-lock"></i>
+        <input type="password" id="password" placeholder="Password" required>
+      </div>
+      
+      <button type="submit">
+        <i class="fas fa-sign-in-alt"></i> Masuk Sistem
+      </button>
+    </form>
+
+<script>
+  const loginForm = document.getElementById('loginForm');
+  const alertBox = document.getElementById('alert');
+  
+  // Data login (bisa ditambah sesuai kebutuhan)
+  const validUsers = {
+    'admin': 'meureubo2024',
+    'laboran': 'lab123',
+    'mama': 'mama123'
+  };
+  
+  // Cek apakah sudah login, kalau sudah langsung redirect
+  if (sessionStorage.getItem('isLoggedIn') === 'true') {
+    window.location.href = 'index.html';
+  }
+  
+  loginForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const username = document.getElementById('username').value.trim();
+    const password = document.getElementById('password').value;
+    
+    // Validasi login
+    if (validUsers[username] && validUsers[username] === password) {
+      // Login berhasil
+      sessionStorage.setItem('isLoggedIn', 'true');
+      sessionStorage.setItem('username', username);
+      sessionStorage.setItem('loginTime', new Date().toISOString());
+      
+      // Redirect ke halaman utama
+      window.location.href = 'index.html';
+    } else {
+      // Login gagal
+      showAlert('⚠️ Username atau password salah!');
+      document.getElementById('password').value = '';
+    }
+  });
+  
+  function showAlert(message) {
+    alertBox.textContent = message;
+    alertBox.style.display = 'block';
+    
+    setTimeout(() => {
+      alertBox.style.display = 'none';
+    }, 3000);
+  }
+</script>
+</body>
+</html>
